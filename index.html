@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capitã Lima</title>
+    <style>
+        /* Estilo geral para o body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            animation: backgroundColorChange 10s infinite;
+        }
+
+        /* Animação de mudança suave de cor de fundo */
+        @keyframes backgroundColorChange {
+            0% { background-color: #f0f8ff; }
+            50% { background-color: #ffe4e1; }
+            100% { background-color: #e6e6fa; }
+        }
+
+        /* Estilo para o container principal */
+        #container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 320px;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite alternate;
+        }
+
+        /* Animação bounce */
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #2a9df4;
+            margin-bottom: 20px;
+        }
+
+        /* Efeitos e emojis no label e no select */
+        label {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            font-size: 16px;
+            outline: none;
+            transition: transform 0.3s;
+        }
+
+        /* Efeito de escala no select ao passar o mouse */
+        select:hover {
+            transform: scale(1.05);
+        }
+
+        input[type="submit"] {
+            background-color: #2a9df4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        /* Efeito hover no botão de enviar */
+        input[type="submit"]:hover {
+            background-color: #238ad4;
+            transform: scale(1.05);
+        }
+
+        /* Estilizando o pop-up */
+        #popup {
+            display: none; /* Escondido por padrão */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1000;
+            width: 320px;
+        }
+
+        #popup p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Botão de fechar no pop-up com efeito */
+        #closePopup {
+            margin-top: 20px;
+            background-color: #2a9df4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #closePopup:hover {
+            background-color: #238ad4;
+            transform: scale(1.05);
+        }
+
+        /* Estilo para o footer */
+        footer {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            text-align: end;
+            padding: 10px;
+        }
+
+        footer p {
+            text-align: end;
+            text-decoration: none;
+            text-decoration-color: rgb(28, 15, 100);
+            font-size: 15px;
+            margin: 0;
+        }
+
+        /* Ajustes para dispositivos móveis */
+        @media (max-width: 600px) {
+            #container {
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            #popup {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>🌟 Para alegrar o seu dia, Capitã! 🌟</h1><br>
+
+        <!-- Formulário -->
+        <form id="meuFormulario" method="get" onsubmit="return mostrarPopup(event)">
+            <label for="opcoes">Escolha o dia da Semana: 😊</label><br>
+            <select id="opcoes">
+                <option value="">🌞 Dia da semana</option>
+                <option value="segunda">Segunda-feira</option>
+                <option value="terça">Terça-feira</option>
+                <option value="quarta">Quarta-feira</option>
+                <option value="quinta">Quinta-feira</option>
+                <option value="sexta">Sexta-feira</option>
+                <option value="sabado">Sábado</option>
+                <option value="domingo">Domingo</option>
+            </select><br>
+
+            <input type="submit" value="Enviar 🚀">
+        </form>
+    </div>
+
+    <!-- Pop-up -->
+    <div id="popup">
+        <p id="popupMessage"></p>
+        <button id="closePopup" onclick="fecharPopup()">Fechar 💖</button>
+    </div>
+
+    <!-- Footer com mensagem carinhosa -->
+    <footer>
+        <p>Com minhas habilidades em HTML adquiridas hoje, <br> infelizmente é o máximo que consigo fazer, porém feito com muito carinho! 🌷</p>
+    </footer>
+
+    <script>
+        function mostrarPopup(event) {
+            // Previne o envio do formulário
+            event.preventDefault();
+
+            const valorSelecionado = document.getElementById("opcoes").value;
+            const popupMessage = document.getElementById("popupMessage");
+            const popup = document.getElementById("popup");
+            
+            // Define a mensagem do pop-up baseado no valor selecionado
+            switch (valorSelecionado) {
+                case "segunda":
+                    popupMessage.textContent = "🌟 Segunda-feira é o ponto de partida para os seus sonhos. Comece com foco e determinação! 💪";
+                    break;
+                case "terça":
+                    popupMessage.textContent = "🚀 Cada passo dado hoje te aproxima da realização dos seus objetivos. Continue firme! 🌱";
+                    break;
+                case "quarta":
+                    popupMessage.textContent = "💼 O esforço de hoje trará as recompensas de amanhã. Confie no processo! 💡";
+                    break;
+                case "quinta":
+                    popupMessage.textContent = "🎯 O fim de semana está perto, mas o sucesso está mais próximo ainda. Continue! 🏅";
+                    break;
+                case "sexta":
+                    popupMessage.textContent = "🎉 Feche a semana com chave de ouro, porque grandes realizações estão a caminho! 🏆";
+                    break;
+                case "sabado":
+                    popupMessage.textContent = "😌 Permita-se um tempo de descanso, porque a sua mente renovada será mais criativa amanhã. 🌸";
+                    break;
+                case "domingo":
+                    popupMessage.textContent = "🌈 Use este dia para se conectar com o que te faz feliz e comece a semana com energia positiva! ✨";
+                    break;
+                default:
+                    popupMessage.textContent = "Por favor, selecione um dia da semana. 😊";
+            }
+
+            // Exibe o pop-up
+            popup.style.display = 'block';
+        }
+
+        // Função para fechar o pop-up
+        function fecharPopup() {
+            document.getElementById("popup").style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
