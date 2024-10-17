@@ -180,6 +180,7 @@
                 <option value="sexta">Sexta-feira</option>
                 <option value="sabado">Sábado</option>
                 <option value="domingo">Domingo</option>
+                <option value="lembre">Lembre-se sempre</option>
             </select><br>
 
             <input type="submit" value="Enviar 🚀">
@@ -209,28 +210,31 @@
             // Define a mensagem do pop-up baseado no valor selecionado
             switch (valorSelecionado) {
                 case "segunda":
-                    popupMessage.textContent = "🌟 Segunda-feira é o ponto de partida para os seus sonhos. Comece com foco e determinação! 💪";
+                    popupMessage.textContent = " 🌟 Acredite em si mesmo e tudo será possível! 💪";
                     break;
                 case "terça":
-                    popupMessage.textContent = "🚀 Cada passo dado hoje te aproxima da realização dos seus objetivos. Continue firme! 🌱";
+                    popupMessage.textContent = " 🚶‍♂️ Cada passo conta, continue avançando! 🚀";
                     break;
                 case "quarta":
                     popupMessage.textContent = "💼 O esforço de hoje trará as recompensas de amanhã. Confie no processo! 💡";
                     break;
                 case "quinta":
-                    popupMessage.textContent = "🎯 O fim de semana está perto, mas o sucesso está mais próximo ainda. Continue! 🏅";
+                    popupMessage.textContent = "💪 Desafios são oportunidades disfarçadas! 🌈";
                     break;
                 case "sexta":
-                    popupMessage.textContent = "🎉 Feche a semana com chave de ouro, porque grandes realizações estão a caminho! 🏆";
+                    popupMessage.textContent = " 🎉 Sexta-feira é o momento de celebrar as conquistas da semana e se preparar para novas aventuras! ✨";
                     break;
                 case "sabado":
-                    popupMessage.textContent = "😌 Permita-se um tempo de descanso, porque a sua mente renovada será mais criativa amanhã. 🌸";
+                    popupMessage.textContent = "✨ Aproveite o sábado para recarregar suas energias e sonhar alto! 🌿 ";
                     break;
                 case "domingo":
-                    popupMessage.textContent = "🌈 Use este dia para se conectar com o que te faz feliz e comece a semana com energia positiva! ✨";
+                    popupMessage.textContent = "🌞 Domingo é o dia perfeito para refletir e se preparar para a semana que vem! 📅";
+                    break;
+                case "lembre": 
+                    popupMessage.textContent = " ✨ Você é incrível demais, lembre - se disso! 😊 "
                     break;
                 default:
-                    popupMessage.textContent = "Por favor, selecione um dia da semana. 😊";
+                    popupMessage.textContent = " Por favor, selecione um dia da semana. 😊";
             }
 
             // Exibe o pop-up
